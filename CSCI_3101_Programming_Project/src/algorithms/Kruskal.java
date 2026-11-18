@@ -8,7 +8,7 @@ package algorithms;
  */
 
 import java.util.ArrayList;
-
+import java.util.*;
 
 public class Kruskal {
 	static 	class Edge {
@@ -73,15 +73,28 @@ public class Kruskal {
 	}
 	
     public static void main(String[] args) {
+    	Scanner kb = new Scanner (System.in);
+    	System.out.println("How many points for Kruskal?:");
+    	int n = kb.nextInt();
     	
-    	double [][] points = {
-    			{1, 1},
-    			{2, 2},
-    			{4, 1},
-    	};
+    	double [][] points = new double[n][2];
+    	
+    	for (int i = 0; i < n; i++) {
+    		
+    		System.out.println("Enter X for point "+(i+1)+": ");
+    		
+    		points[i][0] = kb.nextDouble();
+    		
+    		System.out.print("Enter Y for point " + (i+1)+": ");
+    		points[i][1] = kb.nextDouble();
+    		
+    	}
+    	
+    	
     	double result = kruskal(points);
     	
-    	System.out.printf("%.2f%n", result);
-	}
+    	System.out.printf("Minimum spanning tree length: %.2f%n", result);
+	kb.close();
+    }
 	
 }
