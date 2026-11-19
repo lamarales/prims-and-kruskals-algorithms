@@ -11,7 +11,6 @@ package algorithms;
  * @author Luis Amarales
  */
 
-import java.util.ArrayList;
 import java.util.*;
 
 public class Kruskal {
