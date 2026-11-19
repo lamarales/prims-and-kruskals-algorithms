@@ -51,15 +51,42 @@ public class Prim {
 		return total;
 	}
 	
-    public static void main(String[] args) {
-    	
-    	double[][] points = {
-    			{1.0,1.0},
-    			{2.0,2.0},
-    			{2.0,4.0}
-    	};
-    	double result = prim(points);
-    	System.out.printf("%.2f%n", result);
-    	
+
+public static void main(String[] args) {
+
+    Scanner kb = new Scanner(System.in);
+    kb.useLocale(Locale.US);
+
+    // test cases
+    int testCases = kb.nextInt();
+
+    // Loops through each test case
+    for (int t = 0; t < testCases; t++) {
+
+        //number of points
+        int n = kb.nextInt();
+
+        double[][] points = new double[n][2];
+
+        // Stores X and Y
+        for (int i = 0; i < n; i++) {
+            points[i][0] = kb.nextDouble();
+            points[i][1] = kb.nextDouble();
+        }
+
+        // Calculates the minimum spanning tree
+        double result = prim(points);
+
+        // Separates consecutive test cases
+        if (t > 0) {
+            System.out.println();
+        }
+
+        // Prints only MST length
+        System.out.printf(Locale.US, "%.2f%n", result);
     }
+
+    kb.close();
+}
+
 }

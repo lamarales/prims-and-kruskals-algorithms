@@ -76,72 +76,42 @@ public class Kruskal {
 		return find(parent, parent[vertex]);
 	}
 	
-	public static void main(String[] args) {
-		//Creates scanner for user input
-	    Scanner kb = new Scanner(System.in);
 
-	    boolean validInput = false;
-	    int n = 0;
+public static void main(String[] args) {
 
-	    // Validate number of points
-	    while (!validInput) {
-	        try {
-	            System.out.print("How many points for Kruskal?: ");
-	            n = kb.nextInt();
+    Scanner kb = new Scanner(System.in);
+    kb.useLocale(Locale.US);
 
-	            if (n > 0 && n <= 100) {
-	                validInput = true;
-	            } else {
-	                System.out.println("Please enter an integer between 1 and 100.");
-	            }
+    // Reads the number of test cases
+    int testCases = kb.nextInt();
 
-	        } catch (InputMismatchException e) {
-	            System.out.println("Please enter an integer.");
-	            kb.nextLine();
-	        }
-	    }
+    // Loops through each test case
+    for (int t = 0; t < testCases; t++) {
 
-	    double[][] points = new double[n][2];
+        // number of points
+        int n = kb.nextInt();
 
-	    // Get X and Y coordinates
-	    for (int i = 0; i < n; i++) {
+        double[][] points = new double[n][2];
 
-	        // Validate X coordinate
-	        validInput = false;
+        // Reads and stores X and Y
+        for (int i = 0; i < n; i++) {
+            points[i][0] = kb.nextDouble();
+            points[i][1] = kb.nextDouble();
+        }
 
-	        while (!validInput) {
-	            try {
-	                System.out.print("Enter X for point " + (i + 1) + ": ");
-	                points[i][0] = kb.nextDouble();
+        // Calculates the MST
+        double result = kruskal(points);
 
-	                validInput = true;
+        // Adds blank line between test cases
+        if (t > 0) {
+            System.out.println();
+        }
 
-	            } catch (InputMismatchException e) {
-	                System.out.println("Please enter a valid number for X.");
-	                kb.nextLine();
-	            }
-	        }
+        // Prints only MST length
+        System.out.printf(Locale.US, "%.2f%n", result);
+    }
 
-	        // Validate Y coordinate
-	        validInput = false;
+    kb.close();
+}
 
-	        while (!validInput) {
-	            try {
-	                System.out.print("Enter Y for point " + (i + 1) + ": ");
-	                points[i][1] = kb.nextDouble();
-
-	                validInput = true;
-
-	            } catch (InputMismatchException e) {
-	                System.out.println("Please enter a valid number for Y.");
-	                kb.nextLine();
-	            }
-	        }
-	    }
-	    double result = kruskal(points);
-
-	    System.out.printf("Minimum spanning tree length: %.2f%n", result);
-
-	    kb.close();
-	}
 }
